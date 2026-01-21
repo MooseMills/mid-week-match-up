@@ -191,7 +191,7 @@ function renderPodium(top3) {
         <span class="statPill">🥇 ${item.gold}</span>
         <span class="statPill">🥈 ${item.silver}</span>
         <span class="statPill">🥉 ${item.bronze}</span>
-        <span class="statPill">🏁 ${item.podiums} Medals</span>
+        <span class="statPill">🏆 ${item.podiums} Medals</span>
       </div>
       <div class="podiumBase"></div>
     `;
