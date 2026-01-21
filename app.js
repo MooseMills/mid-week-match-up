@@ -1,8 +1,8 @@
 const CSV_PATH = "./results.csv";
 
 let rawRows = [];
-let currentView = "Team";     // or "Teammate"
-let currentSort = "olympics"; // or "points"
+let currentView = "Team";    
+let currentSort = "points";
 let searchTerm = "";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -30,13 +30,6 @@ function wireUI() {
     searchTerm = (e.target.value || "").toLowerCase();
     render();
   });
-}
-
-async function loadCsv(path) {
-  const res = await fetch(path, { cache: "no-store" });
-  if (!res.ok) throw new Error(`Failed to fetch CSV: ${res.status}`);
-  const text = await res.text();
-  return parseCsv(text);
 }
 
 // Minimal CSV parser that handles commas and quotes reasonably well
@@ -112,14 +105,15 @@ function buildStandings(rows, groupKey) {
   const arr = Array.from(map.values());
 
   arr.sort((a, b) => {
-    if (currentSort === "points") return b.points - a.points;
+  if (currentSort === "podiums") {
+    if (b.podiums !== a.podiums) return b.podiums - a.podiums;
+    return b.points - a.points; // tie-breaker
+  }
 
-    // Olympics-first sorting
-    if (b.gold !== a.gold) return b.gold - a.gold;
-    if (b.silver !== a.silver) return b.silver - a.silver;
-    if (b.bronze !== a.bronze) return b.bronze - a.bronze;
-    return b.points - a.points;
-  });
+  // default: points
+  return b.points - a.points;
+});
+
 
   return arr;
 }
@@ -134,11 +128,6 @@ function render() {
   // Title + meta
   document.getElementById("tableTitle").textContent =
     `${currentView} Medal Table`;
-
-  const totalEntries = filtered.length;
-  const totalEvents = rawRows.length;
-  document.getElementById("meta").textContent =
-    `${totalEntries} ${currentView.toLowerCase()} • ${totalEvents} placements loaded`;
 
   renderPodium(filtered.slice(0, 3));
   renderTable(filtered);
@@ -188,7 +177,7 @@ function renderPodium(top3) {
         <span class="statPill">🥇 ${item.gold}</span>
         <span class="statPill">🥈 ${item.silver}</span>
         <span class="statPill">🥉 ${item.bronze}</span>
-        <span class="statPill">🏁 ${item.podiums} podiums</span>
+        <span class="statPill">🏁 ${item.podiums} Medals</span>
       </div>
       <div class="podiumBase"></div>
     `;
@@ -202,11 +191,24 @@ function renderTable(items) {
 
   items.forEach((s, i) => {
     const tr = document.createElement("tr");
-    if (i === 0) tr.classList.add("rowGlow");
+    
+    if (i === 0) tr.classList.add("rank-1");
+  if (i === 1) tr.classList.add("rank-2");
+  if (i === 2) tr.classList.add("rank-3");
+
+    const medal =
+  i === 0 ? "🥇 " :
+  i === 1 ? "🥈 " :
+  i === 2 ? "🥉 " : "";
 
     tr.innerHTML = `
       <td class="rankCol">${i + 1}</td>
-      <td><b>${escapeHtml(s.name)}</b></td>
+      <td>
+  <b class="nameCell">
+    ${escapeHtml(s.name)}
+    ${medal ? `<span class="medalIcon">${medal}</span>` : ""}
+  </b>
+</td>
       <td>${s.gold}</td>
       <td>${s.silver}</td>
       <td>${s.bronze}</td>
@@ -225,4 +227,3 @@ function escapeHtml(str) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
-
