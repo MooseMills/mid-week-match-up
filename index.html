@@ -1,1 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mid-Week Match Up — Leaderboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="topInner">
+      <div>
+        <h1>Mid-Week Match Up</h1>
+        <p class="sub">Olympics-style standings — teams ranked by medals, then points.</p>
+      </div>
+
+      <div class="controls">
+        <label class="pill">
+          View
+          <select id="viewSelect">
+            <option value="Team" selected>Teams</option>
+            <option value="Teammate">Teammates</option>
+          </select>
+        </label>
+
+        <label class="pill">
+          Sort
+          <select id="sortSelect">
+            <option value="olympics" selected>Olympics</option>
+            <option value="points">Points</option>
+          </select>
+        </label>
+
+        <label class="pill">
+          Search
+          <input id="searchInput" type="search" placeholder="Type a team name…" />
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="podium" id="podium"></section>
+
+    <section class="tableCard">
+      <div class="tableHeader">
+        <h2 id="tableTitle">Team Medal Table</h2>
+        <div class="meta" id="meta"></div>
+      </div>
+
+      <div class="tableScroll">
+        <table class="medalTable" id="medalTable">
+          <thead>
+            <tr>
+              <th class="rankCol">#</th>
+              <th>Name</th>
+              <th title="Gold">🥇</th>
+              <th title="Silver">🥈</th>
+              <th title="Bronze">🥉</th>
+              <th>Podiums</th>
+              <th class="pointsCol">Points</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
 
