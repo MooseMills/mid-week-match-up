@@ -11,6 +11,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   render();
 });
 
+async function loadCsv(path) {
+  const res = await fetch(path, { cache: "no-store" });
+  if (!res.ok) throw new Error(`Failed to fetch CSV: ${res.status}`);
+  const text = await res.text();
+  return parseCsv(text);
+}
+
 function wireUI() {
   const viewSelect = document.getElementById("viewSelect");
   const sortSelect = document.getElementById("sortSelect");
