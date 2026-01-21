@@ -1,3 +1,4 @@
+console.log("RUNNING leaderboard script v1")
 const CSV_PATH = "./results.csv";
 
 let rawRows = [];
