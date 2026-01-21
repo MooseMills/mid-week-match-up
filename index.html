@@ -1,5 +1,3 @@
-<!doctype html>
-<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,7 +9,7 @@
     <div class="topInner">
       <div>
         <h1>Mid-Week Match Up</h1>
-        <p class="sub">Olympics-style standings — teams ranked by medals, then points.</p>
+        <p class="sub">See how you and your team stack up against the rest of Dental Intelligence!</p>
       </div>
 
       <div class="controls">
@@ -26,14 +24,14 @@
         <label class="pill">
           Sort
           <select id="sortSelect">
-            <option value="olympics" selected>Olympics</option>
-            <option value="points">Points</option>
+            <option value="points" selected>Points</option>
+            <option value="podiums">Medal Count</option>
           </select>
         </label>
 
         <label class="pill">
           Search
-          <input id="searchInput" type="search" placeholder="Type a team name…" />
+          <input id="searchInput" type="search" placeholder="Type a team or name…" />
         </label>
       </div>
     </div>
@@ -57,7 +55,7 @@
               <th title="Gold">🥇</th>
               <th title="Silver">🥈</th>
               <th title="Bronze">🥉</th>
-              <th>Podiums</th>
+              <th>Total Medals</th>
               <th class="pointsCol">Points</th>
             </tr>
           </thead>
@@ -70,4 +68,3 @@
   <script src="app.js"></script>
 </body>
 </html>
-
