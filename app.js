@@ -23,21 +23,28 @@ function wireUI() {
   const sortSelect = document.getElementById("sortSelect");
   const searchInput = document.getElementById("searchInput");
 
-  viewSelect.addEventListener("change", (e) => {
-    currentView = e.target.value;
-    render();
-  });
+  if (viewSelect) {
+    viewSelect.addEventListener("change", (e) => {
+      currentView = e.target.value;
+      render();
+    });
+  }
 
-  sortSelect.addEventListener("change", (e) => {
-    currentSort = e.target.value;
-    render();
-  });
+  if (sortSelect) {
+    sortSelect.addEventListener("change", (e) => {
+      currentSort = e.target.value;
+      render();
+    });
+  }
 
-  searchInput.addEventListener("input", (e) => {
-    searchTerm = (e.target.value || "").toLowerCase();
-    render();
-  });
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      searchTerm = (e.target.value || "").toLowerCase();
+      render();
+    });
+  }
 }
+
 
 // Minimal CSV parser that handles commas and quotes reasonably well
 function parseCsv(text) {
