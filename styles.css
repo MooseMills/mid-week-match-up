@@ -183,11 +183,60 @@ border:2px solid, var(--bronze)}
 background: var(--navy);
 }
 
-
 .podiumCard.second .podiumBase{ height: 70px;
-background: var(--blue);}
+background: var(--blue);
+}
+
 .podiumCard.third .podiumBase{ height: 50px;
-background: var(--green);}
+background: var(--green);
+}
+
+/* ===== Podium sequence animations ===== */
+.podiumCard {
+  /* default state before we "play" */
+  transform: translateY(28px);
+  opacity: 0;
+}
+
+.podiumCard.is-in {
+  animation: podiumRise 520ms cubic-bezier(.2,.9,.2,1) forwards;
+}
+
+@keyframes podiumRise {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Winner name spin-in */
+.podiumName {
+  opacity: 0;
+  transform: rotate(-10deg) scale(.92);
+  transform-origin: 50% 50%;
+}
+
+.podiumName.is-in {
+  animation: nameSpinIn 520ms cubic-bezier(.2,.9,.2,1) forwards;
+}
+
+@keyframes nameSpinIn {
+  60% { opacity: 1; }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+/* Confetti canvas overlay */
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
 
 .tableCard{
   background:var(--card);
