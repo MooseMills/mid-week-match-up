@@ -1,6 +1,8 @@
 :root{
   --navy:#002955;
   --blue:#0060C6;
+  --light-blue:#CCEEFF;
+  --dark-green:#0B301A;
   --green:#00AB63;
   --bg:#F2F3F5;
 
@@ -136,12 +138,46 @@ border:2px solid, var(--bronze)}
 .badge.silver{ background: rgba(185,194,200,.22); }
 .badge.bronze{ background: rgba(151,117,71,0.22); }
 
-.podiumName{
-  padding:0 14px 14px;
-  font-size:22px;
-  font-weight:800;
-  letter-spacing:-.01em;
+.podiumName {
+  padding: 0 14px 14px;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-align: center;
+
+  position: relative;
+  z-index: 2;
+
+  opacity: 0;
+  transform: rotate(-10deg) scale(0.92);
+  transform-origin: 50% 50%;
 }
+
+.podiumName.is-in {
+  animation: nameSpinIn 1000ms cubic-bezier(.2,.9,.2,1) forwards;
+}
+
+@keyframes nameSpinIn {
+  0% {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.92);
+  }
+
+  55% {
+    opacity: 1;
+    transform: rotate(2deg) scale(1.12);
+  }
+
+  75% {
+    transform: rotate(-1deg) scale(0.98);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
 .podiumStats{
   padding:0 14px 14px;
   display:flex;
@@ -193,13 +229,30 @@ border:2px solid, var(--bronze)}
   mix-blend-mode: screen;
 }
 
+.podiumCard.second .podiumBase::before{
+  background: radial-gradient(
+    circle at top center,
+    rgba(255,255,255,0.42),
+    rgba(255,255,255,0) 55%
+  );
+}
+.podiumCard.second .podiumBase::after{
+  background: radial-gradient(
+    ellipse at 30% 20%,
+    rgba(255,255,255,0.28),
+    rgba(255,255,255,0) 60%
+  );
+}
+
 .podiumCard.first .podiumBase{ height: 100px;
-background: var(--navy);
+background: var(--blue);
 }
 
 
 .podiumCard.second .podiumBase{ height: 70px;
-background: var(--blue);}
+background: #C7EAFB;
+} 
+
 .podiumCard.third .podiumBase{ height: 50px;
 background: var(--green);}
 
@@ -218,40 +271,6 @@ background: var(--green);}
   to {
     transform: translateY(0);
     opacity: 1;
-  }
-}
-
-/* Winner name spin-in */
-.podiumName {
-  position: relative;
-  z-index: 2;
-  opacity: 0;
-  transform: rotate(-10deg) scale(.92);
-  transform-origin: 50% 50%;
-}
-
-.podiumName.is-in {
-  animation: nameSpinIn 1000ms cubic-bezier(.2,.9,.2,1) forwards;
-}
-
-@keyframes nameSpinIn {
-  0% {
-    opacity: 0;
-    transform: rotate(-10deg) scale(0.92);
-  }
-
-  55% {
-    opacity: 1;
-    transform: rotate(2deg) scale(1.12);
-  }
-
-  75% {
-    transform: rotate(-1deg) scale(0.98);
-  }
-
-  100% {
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
   }
 }
 
