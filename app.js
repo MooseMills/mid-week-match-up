@@ -250,11 +250,6 @@ function playPodiumSequence(top3) {
   const podiumEl = document.getElementById("podium");
   if (!podiumEl) return;
 
-  // Only replay if the actual winners changed (prevents re-animating on search)
-  const key = (top3 || []).map(x => x?.name ?? "—").join("|");
-  if (key === lastPodiumKey) return;
-  lastPodiumKey = key;
-
   const cards = Array.from(podiumEl.querySelectorAll(".podiumCard"));
   if (cards.length !== 3) return;
 
