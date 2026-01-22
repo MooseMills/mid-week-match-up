@@ -244,16 +244,16 @@ border:2px solid, var(--bronze)}
   );
 }
 
-.podiumCard.first .podiumBase{ height: 100px;
+.podiumCard.first .podiumBase{ height: 120px;
 background: var(--blue);
 }
 
 
-.podiumCard.second .podiumBase{ height: 70px;
+.podiumCard.second .podiumBase{ height: 78px;
 background: #C7EAFB;
 } 
 
-.podiumCard.third .podiumBase{ height: 50px;
+.podiumCard.third .podiumBase{ height: 44px;
 background: var(--green);}
 
 /* ===== Podium sequence animations ===== */
@@ -385,4 +385,8 @@ background: var(--green);}
 
 .medalIcon {
   margin-left: 6px; /* adjust 4–8px to taste */
+}
+
+[hidden] { 
+  display: none !important; 
 }
