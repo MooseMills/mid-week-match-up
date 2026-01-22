@@ -391,6 +391,3 @@ function fireConfetti(count = 700) {
 
   tick();
 }
-
-  tick();
-}
