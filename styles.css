@@ -336,11 +336,12 @@ background: var(--green);}
 
 .medalTable thead th{
   position:sticky; top:0;
-  background: rgba(204, 238, 255);
-  color: var(--navy);
+  background: var(--navy);
+  color: #FFFFFF;
   font-weight: 800;
   font-size:16px;
   border-bottom: 1px solid rgba(0, 41, 85, 0.18);
+  filter: saturate(1.4) brightness(1.2);
 }
 
 .rankCol{ width:48px; font-weight: 700}
