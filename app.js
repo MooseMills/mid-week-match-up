@@ -141,7 +141,7 @@ function render() {
 
   // Title + meta
   document.getElementById("tableTitle").textContent =
-    `${currentView} Medal Table`;
+    `${currentView} Leaderboard`;
 
   renderPodium(filtered.slice(0, 3));
   renderTable(filtered);
