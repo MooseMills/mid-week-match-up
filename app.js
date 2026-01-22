@@ -261,8 +261,8 @@ function playPodiumSequence(top3) {
   // Slide up order requested: 3rd -> 2nd -> 1st
   const slideOrder = [third, second, first].filter(Boolean);
 
-  const slideStep = 180;     // ms between podium rises
-  const slideDur  = 520;     // must match CSS animation duration
+  const slideStep = 500;     // ms between podium rises
+  const slideDur  = 720;     // must match CSS animation duration
 
   // Reset state (so replay works)
   cards.forEach((c) => {
@@ -285,18 +285,18 @@ function playPodiumSequence(top3) {
   });
 
   // 2) Names spin in after all podiums are in place, still 3rd -> 2nd -> 1st
-  const namesStart = (slideOrder.length - 1) * slideStep + slideDur + 120;
+  const namesStart = (slideOrder.length - 1) * slideStep + slideDur + 280;
 
   slideOrder.forEach((card, i) => {
     const name = card.querySelector(".podiumName");
     if (!name) return;
-    name.style.animationDelay = `${namesStart + i * 140}ms`;
+    name.style.animationDelay = `${namesStart + i * 720}ms`;
     void name.offsetHeight;
     name.classList.add("is-in");
   });
 
   // 3) Confetti after names finish
-  const confettiAt = namesStart + (slideOrder.length - 1) * 140 + 520;
+  const confettiAt = namesStart + (slideOrder.length - 1) * 720 + 1000;
   window.setTimeout(() => fireConfetti(900), confettiAt);
 }
 
@@ -388,6 +388,9 @@ function fireConfetti(count = 700) {
     if (alive) rafId = requestAnimationFrame(tick);
     else cancelAnimationFrame(rafId);
   };
+
+  tick();
+}
 
   tick();
 }
