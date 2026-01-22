@@ -29,7 +29,6 @@ body{
   background: rgba(242,243,245,.82);
   border-bottom: 1px solid rgba(0,0,0,.06);
 }
-
 .topInner{
   max-width:1100px;
   margin:0 auto;
@@ -103,7 +102,7 @@ h1{ margin:0; letter-spacing:-.02em; }
   border-radius:var(--radius);
   box-shadow:var(--shadow);
   border:1px solid rgba(0,0,0,.06);
-  overflow:hidden;
+  overflow:visible;
   position:relative;
   transform: translateY(0);
   transition: transform .18s ease;
@@ -160,6 +159,7 @@ border:2px solid, var(--bronze)}
 .podiumBase{
   height: 52px;
   border-top:1px solid rgba(0,0,0,.06);
+  border-radius:16px;
   position: relative;
   overflow: hidden;
 }
@@ -197,13 +197,11 @@ border:2px solid, var(--bronze)}
 background: var(--navy);
 }
 
-.podiumCard.second .podiumBase{ height: 70px;
-background: var(--blue);
-}
 
+.podiumCard.second .podiumBase{ height: 70px;
+background: var(--blue);}
 .podiumCard.third .podiumBase{ height: 50px;
-background: var(--green);
-}
+background: var(--green);}
 
 /* ===== Podium sequence animations ===== */
 .podiumCard {
@@ -213,7 +211,7 @@ background: var(--green);
 }
 
 .podiumCard.is-in {
-  animation: podiumRise 520ms cubic-bezier(.2,.9,.2,1) forwards;
+  animation: podiumRise 720ms cubic-bezier(.2,.9,.2,1) forwards;
 }
 
 @keyframes podiumRise {
@@ -225,18 +223,33 @@ background: var(--green);
 
 /* Winner name spin-in */
 .podiumName {
+  position: relative;
+  z-index: 2;
   opacity: 0;
   transform: rotate(-10deg) scale(.92);
   transform-origin: 50% 50%;
 }
 
 .podiumName.is-in {
-  animation: nameSpinIn 520ms cubic-bezier(.2,.9,.2,1) forwards;
+  animation: nameSpinIn 1000ms cubic-bezier(.2,.9,.2,1) forwards;
 }
 
 @keyframes nameSpinIn {
-  60% { opacity: 1; }
-  to {
+  0% {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.92);
+  }
+
+  55% {
+    opacity: 1;
+    transform: rotate(2deg) scale(1.12);
+  }
+
+  75% {
+    transform: rotate(-1deg) scale(0.98);
+  }
+
+  100% {
     opacity: 1;
     transform: rotate(0deg) scale(1);
   }
@@ -259,6 +272,7 @@ background: var(--green);
   border:1px solid rgba(0,0,0,.06);
   overflow:hidden;
 }
+
 .tableHeader{
   padding:16px 16px 10px;
   display:flex;
@@ -267,6 +281,7 @@ background: var(--green);
   flex-wrap:wrap;
   align-items:baseline;
 }
+
 .tableHeader h2{ margin:4; letter-spacing:-.01em; }
 .meta{ opacity:.7; font-size:14px; }
 
@@ -350,6 +365,5 @@ background: var(--green);
 }
 
 .medalIcon {
-  margin-left: 6px;
+  margin-left: 6px; /* adjust 4–8px to taste */
 }
-
