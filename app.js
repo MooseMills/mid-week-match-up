@@ -197,6 +197,8 @@ function renderPodium(top3) {
     `;
     podiumEl.appendChild(card);
   }
+  
+  playPodiumSequence(top3);
 }
 
 function renderTable(items) {
@@ -240,4 +242,157 @@ function escapeHtml(str) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+let lastPodiumKey = "";
+
+function playPodiumSequence(top3) {
+  const podiumEl = document.getElementById("podium");
+  if (!podiumEl) return;
+
+  // Only replay if the actual winners changed (prevents re-animating on search)
+  const key = (top3 || []).map(x => x?.name ?? "—").join("|");
+  if (key === lastPodiumKey) return;
+  lastPodiumKey = key;
+
+  const cards = Array.from(podiumEl.querySelectorAll(".podiumCard"));
+  if (cards.length !== 3) return;
+
+  // Map cards by placement (your DOM order is 2nd, 1st, 3rd)
+  const first  = cards.find(c => c.classList.contains("first"));
+  const second = cards.find(c => c.classList.contains("second"));
+  const third  = cards.find(c => c.classList.contains("third"));
+
+  // Slide up order requested: 3rd -> 2nd -> 1st
+  const slideOrder = [third, second, first].filter(Boolean);
+
+  const slideStep = 180;     // ms between podium rises
+  const slideDur  = 520;     // must match CSS animation duration
+
+  // Reset state (so replay works)
+  cards.forEach((c) => {
+    c.classList.remove("is-in");
+    c.style.animationDelay = "0ms";
+
+    const name = c.querySelector(".podiumName");
+    if (name) {
+      name.classList.remove("is-in");
+      name.style.animationDelay = "0ms";
+    }
+  });
+
+  // 1) Podiums rise: 3rd, 2nd, 1st
+  slideOrder.forEach((card, i) => {
+    card.style.animationDelay = `${i * slideStep}ms`;
+    // force reflow so delay applies reliably
+    void card.offsetHeight;
+    card.classList.add("is-in");
+  });
+
+  // 2) Names spin in after all podiums are in place, still 3rd -> 2nd -> 1st
+  const namesStart = (slideOrder.length - 1) * slideStep + slideDur + 120;
+
+  slideOrder.forEach((card, i) => {
+    const name = card.querySelector(".podiumName");
+    if (!name) return;
+    name.style.animationDelay = `${namesStart + i * 140}ms`;
+    void name.offsetHeight;
+    name.classList.add("is-in");
+  });
+
+  // 3) Confetti after names finish
+  const confettiAt = namesStart + (slideOrder.length - 1) * 140 + 520;
+  window.setTimeout(() => fireConfetti(900), confettiAt);
+}
+
+function cssVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+function setupConfettiCanvas() {
+  const canvas = document.getElementById("confettiCanvas");
+  if (!canvas) return null;
+  const ctx = canvas.getContext("2d");
+  const resize = () => {
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.floor(window.innerWidth * dpr);
+    canvas.height = Math.floor(window.innerHeight * dpr);
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+  resize();
+  window.addEventListener("resize", resize);
+  return { canvas, ctx };
+}
+
+let confettiCtx = null;
+
+function fireConfetti(count = 700) {
+  if (!confettiCtx) confettiCtx = setupConfettiCanvas();
+  if (!confettiCtx) return;
+
+  const { canvas, ctx } = confettiCtx;
+
+  const colors = [
+    cssVar("--navy") || "#002955",
+    cssVar("--blue") || "#0060C6",
+    cssVar("--green") || "#00AB63"
+  ];
+
+  const W = window.innerWidth;
+  const H = window.innerHeight;
+
+  const pieces = Array.from({ length: count }, () => {
+    const x = W * 0.5 + (Math.random() - 0.5) * 420;
+    const y = H * 0.25 + (Math.random() - 0.5) * 60;
+    const size = 6 + Math.random() * 9;
+    const vx = (Math.random() - 0.5) * 22;
+    const vy = -7 - Math.random() * 12;
+    const spin = (Math.random() - 0.5) * 0.25;
+    return {
+      x, y, size,
+      vx, vy,
+      g: 0.18 + Math.random() * 0.10,
+      r: Math.random() * Math.PI,
+      spin,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      life: 0,
+      ttl: 140 + Math.random() * 40
+    };
+  });
+
+  let rafId = 0;
+  const tick = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (const p of pieces) {
+      p.life += 1;
+      p.vy += p.g;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.r += p.spin;
+
+      // slight drift / air resistance
+      p.vx *= 0.992;
+
+      const alpha = Math.max(0, 1 - p.life / p.ttl);
+      if (alpha <= 0) continue;
+
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.r);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+      ctx.restore();
+    }
+
+    // stop when most are done
+    const alive = pieces.some(p => p.life < p.ttl);
+    if (alive) rafId = requestAnimationFrame(tick);
+    else cancelAnimationFrame(rafId);
+  };
+
+  tick();
 }
