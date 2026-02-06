@@ -1,58 +1,59 @@
-Date,Team,Teammate,Placement,Points,,
-17-Sep,Marketing,Kelly Kaufman,1,3,,
-17-Sep,Installations,Andria Benziger,2,2,,
-17-Sep,Security & Compliance,Jackson Callister,3,1,,
-24-Sep,Marketing,Kelly Kaufman,1,3,,
-24-Sep,Account Exec,Taylor Cusick,2,2,,
-24-Sep,Marketing,Brittany Lutowsky,3,1,,
-1-Oct,Support,Hector Alvarado,1,3,,
-1-Oct,Support,Rogelio Flores,2,2,,
-1-Oct,SDR,Mallory Kendall,3,1,,
-8-Oct,CSM,Kristen Soderberg,1,3,,
-8-Oct,Support,Franchesca McCoy,2,2,,
-8-Oct,SDR,Reed McRae,3,1,,
-15-Oct,CSM,Kristen Soderberg,1,3,,
-15-Oct,Marketing,Sam Miller,2,2,,
-15-Oct,Account Exec,Seth Wilkins,3,1,,
-22-Oct,Onboarding,Lauren Tran,1,3,,
-22-Oct,Marketing,Brody Rodgers,2,2,,
-22-Oct,Support,Jesus Felix,3,1,,
-29-Oct,CSM,Kristen Soderberg,1,3,,
-29-Oct,Onboarding,Enoch Fossum,2,2,,
-29-Oct,Account Exec,J.G. Sanders,3,1,,
-5-Nov,Onboarding,Spencer Bjorling,1,3,,
-5-Nov,CSM,Kristen Soderberg,2,2,,
-5-Nov,Support,Ronnie White,3,1,,
-12-Nov,Marketing,Kevin Rach,1,3,,
-12-Nov,Account Exec,Seth Wilkins,2,2,,
-12-Nov,Account Exec,Peyton Anderson,3,1,,
-19-Nov,QA,Jakub Palka,1,3,,
-19-Nov,QA,Sagar Vasoya,2,2,,
-19-Nov,Marketing,Kelly Kaufman,3,1,,
-3-Dec,Support,Ronnie White,1,3,,
-3-Dec,Support,Miguel Vicencio,2,2,,
-3-Dec,Support,Barzilai Maya,3,1,,
-10-Dec,QA,Wojciech Komorowski,1,3,,
-10-Dec,Account Exec,J.G. Sanders,2,2,,
-10-Dec,Support,Franchesca McCoy,3,1,,
-17-Dec,Marketing,Sam Miller,1,3,,
-17-Dec,Support,Franchesca McCoy,2,2,,
-17-Dec,Account Exec,Peyton Anderson,3,1,,
-8-Jan,Support,Hector Alvarado,1,3,,
-8-Jan,Marketing,Kelly Kaufman,2,2,,
-8-Jan,Onboarding,Enoch Fossum,3,1,,
-15-Jan,Marketing,Sam Miller,1,3,,
-15-Jan,Payments,Anna Boogaerts,2,2,,
-15-Jan,Account Exec,J.G. Sanders,3,1,,
-22-Jan,QA,Sagar Vasoya,1,3,,
-22-Jan,Support,Edwin Hernandez,2,2,,
-22-Jan,Product,Johnny Price,3,1,,
-29-Jan,Support,Andres Martinez,1,3,,
-29-Jan,QA,Zofia Bajerska,2,2,,
-29-Jan,Marketing,Kelly Kaufman,3,1,,
+Date,Team,Teammate,Placement,Points
+17-Sep,Marketing,Kelly Kaufman,1,3
+17-Sep,Installations,Andria Benziger,2,2
+17-Sep,Security & Compliance,Jackson Callister,3,1
+24-Sep,Marketing,Kelly Kaufman,1,3
+24-Sep,Account Exec,Taylor Cusick,2,2
+24-Sep,Marketing,Brittany Lutowsky,3,1
+1-Oct,Support,Hector Alvarado,1,3
+1-Oct,Support,Rogelio Flores,2,2
+1-Oct,SDR,Mallory Kendall,3,1
+8-Oct,CSM,Kristen Soderberg,1,3
+8-Oct,Support,Franchesca McCoy,2,2
+8-Oct,SDR,Reed McRae,3,1
+15-Oct,CSM,Kristen Soderberg,1,3
+15-Oct,Marketing,Sam Miller,2,2
+15-Oct,Account Exec,Seth Wilkins,3,1
+22-Oct,Onboarding,Lauren Tran,1,3
+22-Oct,Marketing,Brody Rodgers,2,2
+22-Oct,Support,Jesus Felix,3,1
+29-Oct,CSM,Kristen Soderberg,1,3
+29-Oct,Onboarding,Enoch Fossum,2,2
+29-Oct,Account Exec,J.G. Sanders,3,1
+5-Nov,Onboarding,Spencer Bjorling,1,3
+5-Nov,CSM,Kristen Soderberg,2,2
+5-Nov,Support,Ronnie White,3,1
+12-Nov,Marketing,Kevin Rach,1,3
+12-Nov,Account Exec,Seth Wilkins,2,2
+12-Nov,Account Exec,Peyton Anderson,3,1
+19-Nov,QA,Jakub Palka,1,3
+19-Nov,QA,Sagar Vasoya,2,2
+19-Nov,Marketing,Kelly Kaufman,3,1
+3-Dec,Support,Ronnie White,1,3
+3-Dec,Support,Miguel Vicencio,2,2
+3-Dec,Support,Barzilai Maya,3,1
+10-Dec,QA,Wojciech Komorowski,1,3
+10-Dec,Account Exec,J.G. Sanders,2,2
+10-Dec,Support,Franchesca McCoy,3,1
+17-Dec,Marketing,Sam Miller,1,3
+17-Dec,Support,Franchesca McCoy,2,2
+17-Dec,Account Exec,Peyton Anderson,3,1
+8-Jan,Support,Hector Alvarado,1,3
+8-Jan,Marketing,Kelly Kaufman,2,2
+8-Jan,Onboarding,Enoch Fossum,3,1
+15-Jan,Marketing,Sam Miller,1,3
+15-Jan,Payments,Anna Boogaerts,2,2
+15-Jan,Account Exec,J.G. Sanders,3,1
+22-Jan,QA,Sagar Vasoya,1,3
+22-Jan,Support,Edwin Hernandez,2,2
+22-Jan,Product,Johnny Price,3,1
+29-Jan,Support,Andres Martinez,1,3
+29-Jan,QA,Zofia Bajerska,2,2
+29-Jan,Marketing,Kelly Kaufman,3,1
 5-Feb,QA,Jakub Palka,1,3
 5-Feb,QA,Zeal Modi,2,2
 5-Feb,QA,Zofia Bajerska,3,1
+
 
 
 
